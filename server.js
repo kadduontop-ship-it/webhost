@@ -14,8 +14,7 @@ const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET;
 const FALCON_API_KEY = process.env.FALCON_API_KEY;
 
-/* ================= DATABASE ================= */
-
+/* DATABASE */
 db.run(`
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,8 +31,7 @@ CREATE TABLE IF NOT EXISTS cooldowns (
 )
 `);
 
-/* ================= AUTH ================= */
-
+/* AUTH */
 app.post("/api/signup", async (req, res) => {
   const hash = await bcrypt.hash(req.body.password, 10);
   db.run(
@@ -61,8 +59,7 @@ app.post("/api/login", (req, res) => {
   );
 });
 
-/* ================= ORDER ================= */
-
+/* ORDER */
 app.post("/api/order", async (req, res) => {
   const { platform, link, token } = req.body;
 
